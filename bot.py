@@ -14,21 +14,20 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-TOKEN = '1875544764:AAGObGU9AcrjryAaBWgCf6er-Hlx5UAE76w'
-
+TOKEN = '1871713199:AAErm5PtO90eUeROUf0IN6DcNnLgRvxpDNc'
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
 def start(update, context):
     """Send a message when the command /start is issued."""
-    update.message.reply_text('Hi!')
+    update.message.reply_text('Hi! I'm Sweety, the cutest 🐈 in the world. Happy to meet you')
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Help!')
+    update.message.reply_text('Help! I'm happy to assist you. Right now, I'm still learning')
 
 def echo(update, context):
     """Echo the user message."""
-    update.message.reply_text(update.message.text)
+    update.message.reply_text('you send me, 'update.message.text'. I'm still learning to text you back as a human")
 
 def error(update, context):
     """Log Errors caused by Updates."""
@@ -58,7 +57,7 @@ def main():
     updater.start_webhook(listen="0.0.0.0",
                           port=int(PORT),
                           url_path=TOKEN)
-    updater.bot.setWebhook('https://aleesa-the-bot.herokuapp.com/' + TOKEN)
+    updater.bot.setWebhook('https://chweet.herokuapp.com/' + TOKEN)
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
