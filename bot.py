@@ -19,15 +19,15 @@ TOKEN = '1871713199:AAErm5PtO90eUeROUf0IN6DcNnLgRvxpDNc'
 # context. Error handlers also receive the raised TelegramError object in error.
 def start(update, context):
     """Send a message when the command /start is issued."""
-    update.message.reply_text('Hi! I'm Sweety, the cutest 🐈 in the world. Happy to meet you')
+    update.message.reply_text('Hi! I am Sweety, the cutest 🐈 in the world. Happy to meet you')
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Help! I'm happy to assist you. Right now, I'm still learning')
+    update.message.reply_text('Help! I am happy to assist you. Right now, I am still learning')
 
 def echo(update, context):
     """Echo the user message."""
-    update.message.reply_text('you send me, 'update.message.text'. I'm still learning to text you back as a human")
+    update.message.reply_text('you send me, 'update.message.text'. I am still learning to text you back as a human")
 
 def error(update, context):
     """Log Errors caused by Updates."""
