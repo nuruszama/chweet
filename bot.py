@@ -27,7 +27,7 @@ def help(update, context):
 
 def echo(update, context):
     """Echo the user message."""
-    update.message.reply_text('you send me, 'update.message.text'. I am still learning to text you back as a human')
+    update.message.reply_text(update.message.text)
 
 def error(update, context):
     """Log Errors caused by Updates."""
