@@ -1,7 +1,6 @@
 """
 Simple Bot to reply to Telegram messages taken from the python-telegram-bot examples.
 Deployed using heroku.
-Author: liuhh02 https://medium.com/@liuhh02
 """
 
 import logging
@@ -53,8 +52,6 @@ def main():
     dp.add_handler(CommandHandler("help", help))
 
     # on noncommand i.e message - echo the message on Telegram
-    dp.add_handler(MessageHandler("hi", pass2))
-    dp.add_handler(MessageHandler("bye", pass1))
     dp.add_handler(MessageHandler(Filters.text, echo))
 
     # log all errors
