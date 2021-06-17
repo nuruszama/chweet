@@ -26,7 +26,7 @@ def help(update, context):
 
 def echo(update, context):
     """Echo the user message."""
-    mention = "["+user_name+"](tg://user?id="+str(user_id)+")"
+    """mention = "["+user_name+"](tg://user?id="+str(user_id)+")" """
     """using mention,parse,parse_mode="Markdown" to mention the sender"""
     update.message.reply_text(update.message.text)
 
