@@ -26,7 +26,9 @@ def help(update, context):
 
 def echo(update, context):
     """Echo the user message."""
-    update.message.reply_text(update.message.text)
+    mention = "["+user_name+"](tg://user?id="+str(user_id)+")"
+    """using mention,parse,parse_mode="Markdown" to mention the sender"""
+    update.message.reply_text("you send me" + update.message.text + mention,parse,parse_mode="Markdown")
 
 def pass1(update, context):
     update.message.reply_text('See you soon 😊')
