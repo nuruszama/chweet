@@ -26,6 +26,7 @@ def help(update, context):
 
 def echo(update, context):
     """Echo the user message."""
+    text = 'You send me' + 'text'
     update.message.reply_text(update.message.text)
 
 def pass1(update, context):
