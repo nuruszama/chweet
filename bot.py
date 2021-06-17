@@ -29,9 +29,9 @@ def echo(update, context):
     update.message.reply_text(update.message.text)
 
 def pass1(update, context):
-    mention = "["message.from_user.first_name+"](tg://user?id="+str(user_id)+")"
+    """mention = "["message.from_user.first_name+"](tg://user?id="+str(user_id)+")" """
     """using mention,parse,parse_mode="Markdown" to mention the sender"""
-    update.message.reply_text('Hi' + mention,parse,parse_mode="Markdown")
+    update.message.reply_text('Hi' + [inline mention of a user](tg://user?id=user_id))
 
 def pass2(update, context):
     update.message.reply_text('Sorry, right now I am still learning to respond like humans')
