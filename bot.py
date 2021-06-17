@@ -29,8 +29,10 @@ def echo(update, context):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
 
+def pass1(update, context):
+    update.message.reply_text('See you soon 😊')
 def pass2(update, context):
-    update.message.reply_text('Sorry, but right now I am still learning to respond like humans')
+    update.message.reply_text('Sorry, right now I am still learning to respond like humans')
 
 def error(update, context):
     """Log Errors caused by Updates."""
@@ -51,7 +53,9 @@ def main():
     dp.add_handler(CommandHandler("help", help))
 
     # on noncommand i.e message - echo the message on Telegram
-    dp.add_handler(MessageHandler(Filters.text, pass2))
+    dp.add_handler(MessageHandler("hi", pass2))
+    dp.add_handler(MessageHandler("bye", pass1))
+    dp.add_handler(MessageHandler(Filters.text, echo))
 
     # log all errors
     dp.add_error_handler(error)
