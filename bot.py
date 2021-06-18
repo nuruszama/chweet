@@ -153,7 +153,7 @@ def done(update: Update, context: CallbackContext) -> int:
                 ],
             },
         fallbacks=[MessageHandler(
-                    Filters.regex('^Done$')), done
+                    Filters.regex('^Done$'), done
                     )
                 ],
         )
