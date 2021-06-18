@@ -29,7 +29,7 @@ TOKEN = '1871713199:AAErm5PtO90eUeROUf0IN6DcNnLgRvxpDNc'
 CHOOSING, TYPING_CHOICE, TYPING_REPLY = range (3)
 
 reply_keyboard = [
-    ['Name', 'Age', 'Favourite colour'],
+    ['Age', 'Favourite colour'],
     ['Number of siblings', 'Something else...'],
     ['Done'],
 ]
@@ -52,29 +52,6 @@ def start(update, context):
     )
 
     return CHOOSING
-
-def name(update, context):
-    update.message.reply_text(
-       "Oh 😬 I haven't asked you your name yet!"
-       "What is your name? 😀"
-       )
-
-    return TYPING_REPLY
-
-def hello(update, context):
-    update.message.reply_text(
-       "Hey #{message.from.first_name}, How are you? 🤠"
-       )
-
-    return TYPING_REPLY
-
-def nice(update, context):
-    update.message.reply_text(
-       "Nice to hear that #{message.from.first_name} 🤗"
-       "Is there anything else"
-       )
-
-    return TYPING_REPLY
 
 def regular_choice(update: Update, context: CallbackContext) -> int:
     """Ask the user for info about the selected predefined choice."""
@@ -158,18 +135,21 @@ def done(update: Update, context: CallbackContext) -> int:
         entry_points=[CommandHandler(('start'), start)],
         states=={
             CHOOSING: [
-                MessageHandler(Filters.regex('^(Name)$'), name),
-                MessageHandler(Filters.regex('^(Hi|Hello|Hola|Hey|Oii)$'), Hello),
-                MessageHandler(Filters.regex('^(Fine)$'), nice),
+                MessageHandler(
+                    Filters.regex('^(Age|Favourite colour|Number of siblings)$'), regular_choice
+                ),
                 MessageHandler(Filters.regex('^Something else...$'), custom_choice),
             ],
             TYPING_CHOICE: [
-                MessageHandler(Filters.text & ~(Filters.command | Filters.regex('^Done$')),
-                    regular_choice)
+                MessageHandler(
+                    Filters.text & ~(Filters.command | Filters.regex('^Done$')), regular_choice
+                )
             ],
             TYPING_REPLY: [
-                MessageHandler(Filters.text & ~(Filters.command | Filters.regex('^Done$')),
-                    received_information),
+                MessageHandler(
+                    Filters.text & ~(Filters.command | Filters.regex('^Done$')),
+                    received_information,
+                )
             ],
         },
         fallbacks=[MessageHandler(Filters.regex('^Done$'), done)],
