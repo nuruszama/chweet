@@ -155,7 +155,7 @@ def done(update: Update, context: CallbackContext) -> int:
     # echo the message, end message on Telegram
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler(('start'), start)],
-        states={
+        states=={
             CHOOSING: [
                 MessageHandler(Filters.regex('^(Name)$'), name),
                 MessageHandler(Filters.regex('^(Hi|Hello|Hola|Hey|Oii)$'), Hello),
