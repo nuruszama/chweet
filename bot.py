@@ -38,7 +38,7 @@ def facts_to_str(user_data: Dict[str, str]) -> str:
 def start(update, context):
     """Send a message when the command /start is issued."""
     update.message.reply_text(
-        "Hi! I am Sweety, the cutest 🐈 in the world."
+        "Hi #{message.from.first_name}! I am Sweety, the cutest 🐈 in the world."
         "About what you would like to talk to me"
         "eg: Name, age, hobbies. Reply anything like this"
     )
@@ -54,7 +54,7 @@ def name(update, context):
 
 def hello(update, context):
     update.message.reply_text(
-       "Hey, How are you? 🤠"
+       "Hey @#{message.from.username}, How are you? 🤠"
        )
 
     return TYPING_REPLY
