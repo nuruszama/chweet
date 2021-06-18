@@ -152,7 +152,7 @@ def done(update: Update, context: CallbackContext) -> int:
                 )
             ],
         },
-        fallbacks=[MessageHandler(Filters.regex('^Done$'), done)],
+        fallbacks=[MessageHandler(Filters.regex('^Done$')), done)],
     )
 
     dp.add_handler(conv_handler)
