@@ -46,8 +46,6 @@ def echo(update, context):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
 
-    return END
-
 def incoming(update, context):
     update.message.reply_text('Hi, you send me')
 
@@ -77,8 +75,8 @@ def main():
         entry_points=[MessageHandler(Filters.text, incoming)],
         states={
                 ECHO: [MessageHandler(Filters.text, echo)],
-                END: [MessageHandler(Filters.text, end)],
                 },
+        Fallbacks=[MessageHandler(Filters.text, end)],
         )
 
     dp.add_handler(conv_handler)
