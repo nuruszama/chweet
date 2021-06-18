@@ -38,7 +38,7 @@ def facts_to_str(user_data: Dict[str, str]) -> str:
 def start(update, context):
     """Send a message when the command /start is issued."""
     update.message.reply_text(
-        "Hi #{message.from.first_name}! I am Sweety, the cutest 🐈 in the world."
+        "Hi @#{message.from.username}! I am Sweety, the cutest 🐈 in the world."
         "About what you would like to talk to me"
         "eg: Name, age, hobbies. Reply anything like this"
     )
@@ -54,14 +54,14 @@ def name(update, context):
 
 def hello(update, context):
     update.message.reply_text(
-       "Hey @#{message.from.username}, How are you? 🤠"
+       "Hey #{message.from.first_name}, How are you? 🤠"
        )
 
     return TYPING_REPLY
 
 def nice(update, context):
     update.message.reply_text(
-       "Nice to hear that 🤗"
+       "Nice to hear that #{message.from.first_name} 🤗"
        "Is there anything else"
        )
 
@@ -83,13 +83,6 @@ def custom_choice(update: Update, context: CallbackContext) -> int:
         )
 
     return TYPING_CHOICE
-
-def help(update, context):
-    """Send a message when the command /help is issued."""
-    update.message.reply_text(
-        "Help! I'm happy to assist you."
-        "But right now, I'm still learning"
-        )
 
 def received_information(update: Update, context: CallbackContext) -> int:
     """Store info provided by user and ask for the next category."""
@@ -136,10 +129,6 @@ def main():
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
-    # on different commands - answer in Telegram
-    dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("help", help))
-
 def done(update: Update, context: CallbackContext) -> int:
     """Display the gathered info and end the conversation."""
     user_data = context.user_data
@@ -157,7 +146,7 @@ def done(update: Update, context: CallbackContext) -> int:
     # on noncommand i.e message - welcome message,
     # echo the message, end message on Telegram
     conv_handler = ConversationHandler(
-        entry_points=[MessageHandler(Filters.regex('^(Hi@chweetbot)$'), start)],
+        entry_points=[CommandHandler(('start'), start)],
         states={
             CHOOSING: [
                 MessageHandler(Filters.regex('^(Name)$'), name),
