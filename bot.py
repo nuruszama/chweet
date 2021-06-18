@@ -50,7 +50,7 @@ def start(update, context):
         "eg: Name, age, hobbies. Reply anything like this"
     )
 
-    Return CHOOSING
+    return CHOOSING
 
 def name(update, context):
     update.message.reply_text(
