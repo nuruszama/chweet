@@ -67,18 +67,15 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
 
-    # on noncommand i.e message - echo the message on Telegram
+    # on noncommand i.e message - welcome message,
+    # echo the message, end message on Telegram
     conv_handler = ConversationHandler(
         entry_points=[MessageHandler(Filters.text, incoming)],
         states={
-                ECHO: [
-                MessageHandler(
-                     (MessageHandler(Filters.text, echo)
-                )
-            ],
-        },
+                ECHO: [MessageHandler(Filters.text, echo)],
+                },
         fallbacks=[MessageHandler(Filters.text, end)],
-    )
+        )
 
     dp.add_handler(conv_handler)
 
