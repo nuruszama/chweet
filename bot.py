@@ -130,19 +130,15 @@ def done(update: Update, context: CallbackContext) -> int:
     return ConversationHandler.END
 
     # on conversation
-    conv_handler = ConversationHandler(
-        entry_points=[CommandHandler(('start'), start)],
+    conv_handler = ConversationHandler(entry_points=[CommandHandler(('start'), start)],
         states=={
             CHOOSING: [
                 MessageHandler(Filters.regex('^(Age|Favourite colour|Number of siblings)$'), regular_choice),
-                MessageHandler(Filters.regex('^Something else...$'), custom_choice),
-                ],
+                MessageHandler(Filters.regex('^Something else...$'), custom_choice) ],
             TYPING_CHOICE: [
-                MessageHandler(Filters.text & ~(Filters.command | Filters.regex('^Done$')), regular_choice)
-                ],
+                MessageHandler(Filters.text & ~(Filters.command | Filters.regex('^Done$')), regular_choice) ],
             TYPING_REPLY: [
-                MessageHandler(Filters.text & ~(Filters.command | Filters.regex('^Done$')), received_information)
-                ],
+                MessageHandler(Filters.text & ~(Filters.command | Filters.regex('^Done$')), received_information) ],
             },
         )
     fallbacks = MessageHandler(Filters.regex('^Done$'), done)
