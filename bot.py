@@ -24,6 +24,9 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
+
+ECHO, END = range (2)
+
 TOKEN = '1871713199:AAErm5PtO90eUeROUf0IN6DcNnLgRvxpDNc'
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
@@ -36,7 +39,8 @@ def help(update, context):
     update.message.reply_text('Help! I am happy to assist you. Right now, I am still learning')
 
 def end(update, context):
-    update.message.reply_text('Happy that you send me a message 😀 I cannot completely text you back. I am still learning')
+    update.message.reply_text(
+      'Happy that you send me a message 😀 I cannot completely text you back. I am still learning')
 
 def echo(update, context):
     """Echo the user message."""
@@ -73,8 +77,8 @@ def main():
         entry_points=[MessageHandler(Filters.text, incoming)],
         states={
                 ECHO: [MessageHandler(Filters.text, echo)],
+                END: [MessageHandler(Filters.text, end)],
                 },
-        fallbacks=[MessageHandler(Filters.text, end)],
         )
 
     dp.add_handler(conv_handler)
