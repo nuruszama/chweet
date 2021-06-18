@@ -4,7 +4,18 @@ Deployed using heroku.
 """
 
 import logging
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from typing import Dict
+
+from telegram import ReplyKeyboardMarkup, Update, ReplyKeyboardRemove
+from telegram.ext import (
+    Updater,
+    CommandHandler,
+    MessageHandler,
+    Filters
+    ConversationHandler,
+    CallbackContext,
+)
+
 import os
 PORT = int(os.environ.get('PORT', 5000))
 
@@ -30,11 +41,13 @@ def end(update, context):
 def echo(update, context):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
-    return end
+
+    return END
 
 def incoming(update, context):
     update.message.reply_text('Hi, you send me')
-    return echo
+
+    return ECHO
 
 def error(update, context):
     """Log Errors caused by Updates."""
