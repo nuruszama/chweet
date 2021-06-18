@@ -183,11 +183,10 @@ def done(update: Update, context: CallbackContext) -> int:
 
     # Start the Bot
     TOKEN = '1871713199:AAErm5PtO90eUeROUf0IN6DcNnLgRvxpDNc'
-    LINK = 'https://chweety.herokuapp.com/'
     updater.start_webhook(listen="0.0.0.0",
                           port=int(PORT),
                           url_path=TOKEN)
-    updater.bot.setWebhook(LINK + TOKEN)
+    updater.bot.setWebhook('https://chweety.herokuapp.com/' + TOKEN)
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
