@@ -75,6 +75,7 @@ def main():
                 MessageHandler(
                      (MessageHandler(Filters.text, echo)
                 )
+            ],
         },
         fallbacks=[MessageHandler(Filters.text, end)],
     )
