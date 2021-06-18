@@ -24,7 +24,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-TOKEN = '1871713199:AAErm5PtO90eUeROUf0IN6DcNnLgRvxpDNc'
+TOKEN = '1871713199:AAGEn6U4aD2u0EGlwxsXJmbgTsey-cKoimI'
 
 CHOOSING, TYPING_CHOICE, TYPING_REPLY = range (3)
 
