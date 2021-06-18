@@ -132,7 +132,7 @@ def done(update: Update, context: CallbackContext) -> int:
     # on conversation
     conv_handler = ConversationHandler(entry_point, fallbacks)
     entry_points=[CommandHandler(('start'), start)],
-        states=={
+        states={
             CHOOSING: [
                 MessageHandler(Filters.regex('^(Age|Favourite colour|Number of siblings)$'), regular_choice),
                 MessageHandler(Filters.regex('^Something else...$'), custom_choice) ],
