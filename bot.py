@@ -27,6 +27,13 @@ logger = logging.getLogger(__name__)
 
 CHOOSING, TYPING_CHOICE, TYPING_REPLY = range (3)
 
+reply_keyboard = [
+    ['Name', 'Age', 'Favourite colour'],
+    ['Number of siblings', 'Something else...'],
+    ['Done'],
+]
+markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
+
 def facts_to_str(user_data: Dict[str, str]) -> str:
     """Helper function for formatting the gathered user info."""
     facts = [f'{key} - {value}' for key, value in user_data.items()]
