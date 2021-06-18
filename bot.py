@@ -24,6 +24,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
+TOKEN = '1871713199:AAErm5PtO90eUeROUf0IN6DcNnLgRvxpDNc'
 
 CHOOSING, TYPING_CHOICE, TYPING_REPLY = range (3)
 
@@ -179,11 +180,7 @@ def done(update: Update, context: CallbackContext) -> int:
     dp.add_error_handler(error)
 
     # Start the Bot
-    TOKEN = '1871713199:AAErm5PtO90eUeROUf0IN6DcNnLgRvxpDNc'
-    updater.start_webhook(listen="0.0.0.0",
-                          port=int(PORT),
-                          url_path=TOKEN)
-    updater.bot.setWebhook('https://chweety.herokuapp.com/' + TOKEN)
+    updater.start_polling()
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
