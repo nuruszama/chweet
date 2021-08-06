@@ -89,7 +89,7 @@ def vid(update, context):
             fullname = "{} {}".format(user['first_name'],user['last_name'])
         else:
             fullname = "{} {} [ @{} ]".format(user['first_name'],user['last_name'],user['username'])
-    file_name = update.message.video.file_name
+    file_name = update.message.caption
     chatid = update.message.chat_id
     if update.message.chat_id==owner:
         context.bot.send_video(chat_id=-1001389721791, video=update.message.video.file_id, caption=update.message.caption)
