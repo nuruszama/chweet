@@ -42,7 +42,7 @@ def start(update, context) -> None:
     pic = "AgACAgUAAxkBAAIEM2ENGVtF4OXm9NL-Q2QCuokcjbKBAAKirjEbl3loVLHAiZ9e2RnVAQADAgADbQADIAQ"
     context.bot.send_photo(chat_id=update.message.chat_id, photo = pic, caption=
         f"Hi {fullname} 🙂 I'm Sweety, cutest 🐈 in telegram")
-    context.bot.send_photo(chat_id=update.message.chat_id, text=
+    context.bot.send_message(chat_id=update.message.chat_id, text=
         "Feel free to send a mail at twitzibot@gmail.com if you have any doubts")
     context.bot.send_message(chat_id=-1001521546392, text=f"{fullname} started conversation with me")
 dp_add(CommandHandler("start", start))
