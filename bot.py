@@ -74,6 +74,7 @@ def doc(update, context):
         if update.message.forward_from_chat.id==-1001389721791:
             context.bot.send_document(chat_id=chatid, document=update.message.document.file_id, caption=update.message.caption)
         else:
+            context.bot.send_document(chat_id=chatid, document=update.message.document.file_id, caption=update.message.caption)
             context.bot.send_document(chat_id=-1001389721791, document=update.message.document.file_id, caption=update.message.caption)
             context.bot.send_message(chat_id=-1001521546392, text=f"Added {file_name} from {fullname}")
         context.bot.delete_message(message_id=update.message.message_id, chat_id=chatid)
@@ -106,6 +107,7 @@ def vid(update, context):
         if update.message.forward_from_chat.id==-1001389721791:
             context.bot.send_video(chat_id=chatid, video=update.message.video.file_id, caption=update.message.caption)
         else:
+            context.bot.send_video(chat_id=chatid, video=update.message.video.file_id, caption=update.message.caption)
             context.bot.send_video(chat_id=-1001389721791, video=update.message.video.file_id, caption=update.message.caption)
             context.bot.send_message(chat_id=-1001521546392, text=f"Added {file_name} from {fullname}")
         context.bot.delete_message(message_id=update.message.message_id, chat_id=chatid)
