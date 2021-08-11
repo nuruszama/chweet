@@ -65,15 +65,17 @@ def doc(update, context):
     file_name = update.message.document.file_name
     chatid = update.message.chat_id
     if update.message.chat_id==owner:
-        if update.message.forward_from_chat.chat_id==-1001389721791:
+        if update.message.forward_from_chat.id==-1001389721791:
             context.bot.send_document(chat_id=owner, document=update.message.document.file_id, caption=update.message.caption)
         else:
             context.bot.send_document(chat_id=-1001389721791, document=update.message.document.file_id, caption=update.message.caption)
         context.bot.delete_message(message_id=update.message.message_id, chat_id=owner)
     else:
-        context.bot.send_document(chat_id=chatid, document=update.message.document.file_id, caption=update.message.caption)
-        context.bot.send_document(chat_id=-1001389721791, document=update.message.document.file_id, caption=update.message.caption)
-        context.bot.send_message(chat_id=-1001521546392, text=f"Added {file_name} from {fullname}")
+        if update.message.forward_from_chat.id==-1001389721791:
+            context.bot.send_document(chat_id=chatid, document=update.message.document.file_id, caption=update.message.caption)
+        else:
+            context.bot.send_document(chat_id=-1001389721791, document=update.message.document.file_id, caption=update.message.caption)
+            context.bot.send_message(chat_id=-1001521546392, text=f"Added {file_name} from {fullname}")
         context.bot.delete_message(message_id=update.message.message_id, chat_id=chatid)
 dp_add(MessageHandler(Filters.document, doc))
 
@@ -95,12 +97,17 @@ def vid(update, context):
     file_name = update.message.caption
     chatid = update.message.chat_id
     if update.message.chat_id==owner:
-        context.bot.send_video(chat_id=-1001389721791, video=update.message.video.file_id, caption=update.message.caption)
+        if update.message.forward_from_chat.id==-1001389721791:
+            context.bot.send_video(chat_id=owner, video=update.message.video.file_id, caption=update.message.caption)
+        else:
+            context.bot.send_video(chat_id=-1001389721791, video=update.message.video.file_id, caption=update.message.caption)
         context.bot.delete_message(message_id=update.message.message_id, chat_id=owner)
     else:
-        context.bot.send_video(chat_id=chatid, video=update.message.video.file_id, caption=update.message.caption)
-        context.bot.send_video(chat_id=-1001389721791, video=update.message.video.file_id, caption=update.message.caption)
-        context.bot.send_message(chat_id=-1001521546392, text=f"Added {file_name} from {fullname}")
+        if update.message.forward_from_chat.id==-1001389721791:
+            context.bot.send_video(chat_id=chatid, video=update.message.video.file_id, caption=update.message.caption)
+        else:
+            context.bot.send_video(chat_id=-1001389721791, video=update.message.video.file_id, caption=update.message.caption)
+            context.bot.send_message(chat_id=-1001521546392, text=f"Added {file_name} from {fullname}")
         context.bot.delete_message(message_id=update.message.message_id, chat_id=chatid)
 dp_add(MessageHandler(Filters.video, vid))
 
