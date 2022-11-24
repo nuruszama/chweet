@@ -11,8 +11,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-TOKEN = '1871713199:AAGEn6U4aD2u0EGlwxsXJmbgTsey-cKoimI'
-owner=688872009
+TOKEN = os.environ['TOKEN']
+owner= os.environ['OWNER']
+pic= os.environ['Pro_Pic']
+dumb= os.environ['Dumbing_Group']
+channel= os.environ['Channel']
 
 # Create the Updater and pass it your bot's token.
 # Make sure to set use_context=True to use the new context based callbacks
@@ -39,7 +42,6 @@ def start(update, context) -> None:
             fullname = "{} {}".format(user['first_name'],user['last_name'])
         else:
             fullname = "{} {} [ @{} ]".format(user['first_name'],user['last_name'],user['username'])
-    pic = "AgACAgUAAxkBAAIEM2ENGVtF4OXm9NL-Q2QCuokcjbKBAAKirjEbl3loVLHAiZ9e2RnVAQADAgADbQADIAQ"
     context.bot.send_photo(chat_id=update.message.chat_id, photo = pic, caption=
         f"Hi {fullname} 🙂 I'm Sweety, cutest 🐈 in telegram")
     context.bot.send_message(chat_id=update.message.chat_id, text=
