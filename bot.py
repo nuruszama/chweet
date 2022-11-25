@@ -18,10 +18,12 @@ logger = logging.getLogger(__name__)
 # So we need to declare that secrets here using os.envriron['_']
 TOKEN = os.environ['TOKEN']
 owner= os.environ['OWNER']
+botname= os.environ['botname']
 pic= os.environ['Pro_Pic']
 dumb= os.environ['Dumbing_Group']
 channel= os.environ['Channel']
 mail_id= os.environ['Mail_id']
+# If you are using polling instead of webhook, this line is not required.
 url= os.environ['webhook_url']
 
 # Create the Updater and pass it your bot's token.
@@ -33,8 +35,8 @@ dp_add = updater.dispatcher.add_handler
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
 
-#Send a message when the command /start is issued.
-def start(update, context) -> None:
+# For fetching basic details about the user who using our bot
+def usersname(update, context):
     user = update.message.from_user
     firstname = "{}".format(user['first_name'])
     lastname = "{}".format(user['last_name'])
@@ -49,28 +51,28 @@ def start(update, context) -> None:
             fullname = "{} {}".format(user['first_name'],user['last_name'])
         else:
             fullname = "{} {} [ @{} ]".format(user['first_name'],user['last_name'],user['username'])
-    context.bot.send_photo(chat_id=update.message.chat_id, photo = pic, caption=
-        f"Hi {fullname} 🙂 I'm Sweety, cutest 🐈 in telegram")
+    return(fullname)
+
+#Send a message when the command /start is issued.
+def start(update, context) -> None:
+    fullname= usersname(update, context)
+    if "[" in fullname:
+        name = fullname.split('[')
+        name = name[0]
+    else:
+        name = fullname
+    #This will send a photo with caption as in the text.
+    welcome_text =f"""
+Hi {name} :-)
+insert your custom welcome text here"""
+    context.bot.send_photo(chat_id=update.message.chat_id, photo = pic, caption=welcome_text)
     context.bot.send_message(chat_id=update.message.chat_id, text=
         f"Feel free to send a mail at {mail_id} if you have any doubts")
     context.bot.send_message(chat_id=dumb, text=f"{fullname} started conversation with me")
 dp_add(CommandHandler("start", start))
    
 def doc(update, context):
-    user = update.message.from_user
-    firstname = "{}".format(user['first_name'])
-    lastname = "{}".format(user['last_name'])
-    username = "{}".format(user['username'])
-    if lastname == "None":
-        if username == "None":
-            fullname = "{}".format(user['first_name'])
-        else:
-            fullname = "{} [ @{} ]".format(user['first_name'],user['username'])
-    else:
-        if username == "None":
-            fullname = "{} {}".format(user['first_name'],user['last_name'])
-        else:
-            fullname = "{} {} [ @{} ]".format(user['first_name'],user['last_name'],user['username'])
+    fullname= usersname(update, context)
     file_name = update.message.document.file_name
     chatid = update.message.chat_id
     if update.message.chat_id==owner:
@@ -90,20 +92,7 @@ def doc(update, context):
 dp_add(MessageHandler(Filters.document, doc))
 
 def vid(update, context):
-    user = update.message.from_user
-    firstname = "{}".format(user['first_name'])
-    lastname = "{}".format(user['last_name'])
-    username = "{}".format(user['username'])
-    if lastname == "None":
-        if username == "None":
-            fullname = "{}".format(user['first_name'])
-        else:
-            fullname = "{} [ @{} ]".format(user['first_name'],user['username'])
-    else:
-        if username == "None":
-            fullname = "{} {}".format(user['first_name'],user['last_name'])
-        else:
-            fullname = "{} {} [ @{} ]".format(user['first_name'],user['last_name'],user['username'])
+    fullname= usersname(update, context)
     file_name = update.message.caption
     chatid = update.message.chat_id
     if update.message.chat_id==owner:
